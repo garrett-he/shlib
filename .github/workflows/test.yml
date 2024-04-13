@@ -1,0 +1,19 @@
+name: Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - run: curl -fsSL https://git.io/shellspec | sh -s -- -y
+
+      - run: /home/runner/.local/bin/shellspec --shell bash
